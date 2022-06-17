@@ -7,7 +7,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: none #create <- 항상 새로 갱신(for test), none <- 일반 테이블!
     properties:
       hibernate:
 #        show_sql: true
