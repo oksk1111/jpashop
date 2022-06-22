@@ -24,7 +24,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    //@JsonIgnore     //노출하고 싶지 않을때
+    @JsonIgnore     //노출하고 싶지 않을때, 양방향연관관계에서 무한루프 피할때
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 }
