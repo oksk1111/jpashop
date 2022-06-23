@@ -1,7 +1,6 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Order;
-import jpabook.jpashop.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
@@ -67,4 +66,15 @@ public class OrderRepository {
     public List<Order> findAllByCriterial(OrderSearch orderSerch) {
         return null;
     }
+
+    public List<Order> findAllWithMemberDelivery() {
+        //fetch join. LAZY와 무관하게 다 가져오기
+        //fetch join 하면 모든걸 join 한 상태로 데이터 가져온다. 즉, sql 호출 한번
+        return em.createQuery(
+                "select o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d", Order.class
+        ).getResultList();
+    }
+
 }
