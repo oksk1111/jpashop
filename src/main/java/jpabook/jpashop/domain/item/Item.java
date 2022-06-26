@@ -4,11 +4,13 @@ import jpabook.jpashop.domain.Category;
 import jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@BatchSize(size = 100)      //Collection이 아닌 ToOne의 BatchSize는 클래스정의부에 넣는다.
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "dtype")

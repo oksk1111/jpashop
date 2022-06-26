@@ -43,12 +43,14 @@ public class MemberService {
     }
 
     public Member findOne(Long memberId) {
-        return memberRepository.findOne(memberId);
+//        return memberRepository.findOne(memberId);
+        return memberRepository.findById(memberId).get();   //spring-data-jpa
     }
 
     @Transactional
     public void update(Long id, String name) {
-        Member member = memberRepository.findOne(id);
+//        Member member = memberRepository.findOne(id);
+        Member member = memberRepository.findById(id).get();    //spring-data-jpa
         member.setName(name);
     }
 }

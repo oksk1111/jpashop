@@ -30,7 +30,8 @@ public class OrderService {
     @Transactional
     public Long order(Long memberId, Long itemId, int count) {
         //엔티티 조회
-        Member member = memberRepository.findOne(memberId);
+//        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepository.findById(memberId).get();  //spring-data-jpa
         Item item = itemRepository.findOne(itemId);
 
         //배송정보 생성
@@ -63,6 +64,7 @@ public class OrderService {
 
     //검색
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.findAllByString(orderSearch);
+//        return orderRepository.findAllByString(orderSearch);
+        return orderRepository.findAll(orderSearch);    //QueryDSL 예제
     }
 }
